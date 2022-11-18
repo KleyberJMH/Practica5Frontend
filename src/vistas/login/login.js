@@ -1,0 +1,24 @@
+function escucharClickBoton() {
+
+    const botonLogin = document.getElementById("btn-login");
+
+    botonLogin.addEventListener("click", (_event) => {
+        let correoInput = document.getElementById("correo")
+        let passInput = document.getElementById("pass")
+
+        const query = `?correo=${correoInput.value}&password=${passInput.value}`;
+
+        fetch('http://localhost:8080/gestor/login'+ query)
+        .then(response => response.json())
+        .then(gestor => {
+        console.log({gestor})
+        sessionStorage.setItem('user', JSON.stringify(gestor));
+        location.reload();
+    })
+    })
+
+    
+}
+
+
+escucharClickBoton();

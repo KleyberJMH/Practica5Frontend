@@ -1,17 +1,24 @@
 import InicioVista from "./vistas/inicio/InicioVista.js"
+import LoginVista from "./vistas/login/LoginVista.js"
 import NotFoundVista from "./vistas/not-found/NotFoundVista.js"
 import MiPerfilVista from "./vistas/mi-perfil/MiPerfilVista.js"
 import NuevoGestorVista from "./vistas/nuevo-gestor/NuevoGestorVista.js"
+import NuevoClienteVista from "./vistas/nuevo-cliente/NuevoClienteVista.js"
+import NuevoMensajeVista from "./vistas/nuevo-mensaje/NuevoMensajeVista.js"
+
 
 // para controlar las rutas de la aplicación
 const router = async () => {
     // nuestras rutas
     const rutas = [
         // indicamos la ruta y la clase para cargar la vista
-        { path: "/not-found", view: NotFoundVista },
-        { path: "/", view: InicioVista },
-        { path: "/mi-perfil", view: MiPerfilVista },
-        { path: "/nuevo-gestor", view: NuevoGestorVista }
+        { path: "/not-found", view: NotFoundVista, hasLogin:  false },
+        { path: "/", view: InicioVista, hasLogin:  true },
+        { path: "/mi-perfil", view: MiPerfilVista, hasLogin:  true },
+        { path: "/nuevo-gestor", view: NuevoGestorVista, hasLogin:  true },
+        { path: "/nuevo-cliente", view: NuevoClienteVista, hasLogin:  true },
+        { path: "/nuevo-mensaje", view: NuevoMensajeVista, hasLogin:  true },
+        { path: "/login", view: LoginVista, hasLogin:  false }
     ]
 
     // la ruta que cargaremos si se intenta navegar a una que no existe
@@ -34,6 +41,22 @@ const router = async () => {
         rutaActual = {
             ruta: rutaPorDefecto,
             coincide: true
+        }
+    }
+
+    if (rutaActual.ruta.hasLogin){
+        const usuarioGuardado = sessionStorage.getItem("user")
+        if(usuarioGuardado == null){
+            navegarA("/login")
+            return;
+        }
+    }
+
+    if (rutaActual.ruta.path == "/login"){
+        const usuarioGuardado = sessionStorage.getItem("user")
+        if(usuarioGuardado != null){
+            navegarA("/")
+            return;
         }
     }
 
