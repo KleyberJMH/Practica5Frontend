@@ -1,3 +1,13 @@
+function getIdUsuario(){
+    const usuarioGuardado = sessionStorage.getItem("user");
+    if(usuarioGuardado == null){
+        return null;
+    } else{        
+        const usuario = JSON.parse(usuarioGuardado)
+        return usuario.id;
+    }
+}
+
 function escucharClickBoton() {
     // obtenemos el botón de guardado
     const botonGuardar = document.getElementById("btn-guardar-mensaje");
@@ -6,15 +16,15 @@ function escucharClickBoton() {
     botonGuardar.addEventListener("click", (_event) => {
 
         // obtenemos los inputs por nombre (name) para trabajar con ellos
-        let mensajeInput = document.getElementById("mensaje")
-        let origenInput = document.getElementById("origen")
-        let destinoInput = document.getElementById("destino")
+        let mensajeInput = document.getElementById("mensaje");
+        let destinoInput = document.getElementById("destino");
+        const idGestor = getIdUsuario();
 
         // gestor que guardaremos
         // con .value obtenemos el valor de un input
         const nuevoMensaje = {
             origen: {
-                id: origenInput.value
+                id: idGestor
             },
             destino: {
                 id: destinoInput.value
@@ -34,9 +44,8 @@ function escucharClickBoton() {
         fetch('http://localhost:8080/mensaje', opcionesPost)
             .then(response => response.json())
             .then(mensajeGuardado => {
-                console.log({ mensajeGuardado })
+                // console.log({ mensajeGuardado })
                 // vaciamos los inputs con .reset()
-                origenInput.value = ""
                 destinoInput.value = ""
                 mensajeInput.value = ""
             })

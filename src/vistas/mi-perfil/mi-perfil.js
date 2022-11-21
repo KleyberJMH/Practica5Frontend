@@ -1,13 +1,18 @@
-function getMiPerfil(){
+function getIdUsuario(){
     const usuarioGuardado = sessionStorage.getItem("user");
     if(usuarioGuardado == null){
-        alert("No has iniciado sesion!")
-    } else{
-        
+        return null;
+    } else{        
         const usuario = JSON.parse(usuarioGuardado)
-        const idGestor = usuario.id;
-        
-        
+        return usuario.id;
+    }
+}
+
+function getMiPerfil(){
+    const idGestor = getIdUsuario();
+    if(idGestor == null){
+        alert("No has iniciado sesion!")
+    } else{              
         fetch('http://localhost:8080/gestor/' + idGestor)
         .then(response => response.json())
         .then(gestor => {

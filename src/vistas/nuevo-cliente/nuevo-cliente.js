@@ -1,16 +1,21 @@
-function escucharClickBoton() {
-    // obtenemos el botón de guardado
-    const botonGuardar = document.getElementById("btn-guardar-cliente");
-    
+function getIdUsuario(){
     const usuarioGuardado = sessionStorage.getItem("user");
     if(usuarioGuardado == null){
+        return null;
+    } else{        
+        const usuario = JSON.parse(usuarioGuardado)
+        return usuario.id;
+    }
+}
+
+function escucharClickBoton() {
+    const botonGuardar = document.getElementById("btn-guardar-cliente");
+    const idGestor = getIdUsuario();
+
+    if(idGestor == null){
         alert("No has iniciado sesion!")
     } else{
-        const usuario = JSON.parse(usuarioGuardado)
-        const idGestor = usuario.id;
-
         botonGuardar.addEventListener("click", (_event) => {
-
             // obtenemos los inputs por nombre (name) para trabajar con ellos
             let usuarioInput = document.getElementById("usuario")
             let correoInput = document.getElementById("correo")
@@ -25,7 +30,7 @@ function escucharClickBoton() {
                 password: passInput.value,
                 saldo: saldoInput.value,
                 gestor: {
-                    id: usuario.id
+                    id: idGestor
                 }
             }
     
@@ -41,8 +46,7 @@ function escucharClickBoton() {
             fetch('http://localhost:8080/cliente', opcionesPost)
                 .then(response => response.json())
                 .then(clienteGuardado => {
-                    console.log({ clienteGuardado })
-                    // vaciamos los inputs con .reset()
+                    // console.log({ clienteGuardado })
                     usuarioInput.value = ""
                     correoInput.value = ""
                     passInput.value = ""

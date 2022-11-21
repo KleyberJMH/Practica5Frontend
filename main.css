@@ -38,3 +38,17 @@ li a:hover:not(.active) {
 .active {
     background-color: #04AA6D;
   }
+
+  table {
+    width: 90%;
+    border: 1px solid #000;
+    margin-left: 5%;
+    margin-right: 5%;
+ }
+ th, td {
+    width: 25%;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid #000;
+    border-collapse: collapse;
+ }

@@ -5,6 +5,7 @@ import MiPerfilVista from "./vistas/mi-perfil/MiPerfilVista.js"
 import NuevoGestorVista from "./vistas/nuevo-gestor/NuevoGestorVista.js"
 import NuevoClienteVista from "./vistas/nuevo-cliente/NuevoClienteVista.js"
 import NuevoMensajeVista from "./vistas/nuevo-mensaje/NuevoMensajeVista.js"
+import MostrarClientesVista from "./vistas/mostrar-clientes/MostrarClientesVista.js"
 
 
 // para controlar las rutas de la aplicación
@@ -18,7 +19,8 @@ const router = async () => {
         { path: "/nuevo-gestor", view: NuevoGestorVista, hasLogin:  true },
         { path: "/nuevo-cliente", view: NuevoClienteVista, hasLogin:  true },
         { path: "/nuevo-mensaje", view: NuevoMensajeVista, hasLogin:  true },
-        { path: "/login", view: LoginVista, hasLogin:  false }
+        { path: "/login", view: LoginVista, hasLogin:  false },
+        { path: "/mostrar-clientes", view: MostrarClientesVista, hasLogin:  true }
     ]
 
     // la ruta que cargaremos si se intenta navegar a una que no existe
@@ -66,8 +68,6 @@ const router = async () => {
     // obtenemos el contenido de la vista y lo cargamos en el contenedor de página
     // usamos await porque getHTML es una función asíncrona (async)
     await vistaActual.getHTML()
-
-    console.log({ rutaActual })
 
 }
 

@@ -30,8 +30,7 @@ function escucharClickBoton() {
         fetch('http://localhost:8080/gestor', opcionesPost)
             .then(response => response.json())
             .then(gestorGuardado => {
-                console.log({ gestorGuardado })
-                // vaciamos los inputs con .reset()
+                // console.log({ gestorGuardado })
                 usuarioInput.value = ""
                 correoInput.value = ""
                 passInput.value = ""

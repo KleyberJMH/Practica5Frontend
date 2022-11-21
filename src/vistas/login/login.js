@@ -11,9 +11,14 @@ function escucharClickBoton() {
         fetch('http://localhost:8080/gestor/login'+ query)
         .then(response => response.json())
         .then(gestor => {
-        console.log({gestor})
-        sessionStorage.setItem('user', JSON.stringify(gestor));
-        location.reload();
+            if(gestor != null){
+                // console.log({gestor})
+                sessionStorage.setItem('user', JSON.stringify(gestor));
+                 location.reload();
+            }else{
+                // alert("El correo o contraseña no coinciden")
+            }
+        
     })
     })
 
