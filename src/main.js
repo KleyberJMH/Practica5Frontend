@@ -6,6 +6,8 @@ import NuevoGestorVista from "./vistas/nuevo-gestor/NuevoGestorVista.js"
 import NuevoClienteVista from "./vistas/nuevo-cliente/NuevoClienteVista.js"
 import NuevoMensajeVista from "./vistas/nuevo-mensaje/NuevoMensajeVista.js"
 import MostrarClientesVista from "./vistas/mostrar-clientes/MostrarClientesVista.js"
+import MostrarMensajesVista from "./vistas/mostrar-mensajes/MostrarMensajesVista.js"
+import MostrarTransferenciasVista from "./vistas/mostrar-transferencias/MostrarTransferenciasVista.js"
 
 
 // para controlar las rutas de la aplicación
@@ -20,7 +22,9 @@ const router = async () => {
         { path: "/nuevo-cliente", view: NuevoClienteVista, hasLogin:  true },
         { path: "/nuevo-mensaje", view: NuevoMensajeVista, hasLogin:  true },
         { path: "/login", view: LoginVista, hasLogin:  false },
-        { path: "/mostrar-clientes", view: MostrarClientesVista, hasLogin:  true }
+        { path: "/mostrar-clientes", view: MostrarClientesVista, hasLogin:  true },
+        { path: "/mostrar-mensajes", view: MostrarMensajesVista, hasLogin:  true },
+        { path: "/mostrar-transferencias", view: MostrarTransferenciasVista, hasLogin:  true }
     ]
 
     // la ruta que cargaremos si se intenta navegar a una que no existe

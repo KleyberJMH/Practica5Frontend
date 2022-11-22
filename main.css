@@ -52,3 +52,11 @@ li a:hover:not(.active) {
     border: 1px solid #000;
     border-collapse: collapse;
  }
+
+ .debito{
+  background-color: red;
+ }
+
+ .credito {
+background-color: green;
+ }
