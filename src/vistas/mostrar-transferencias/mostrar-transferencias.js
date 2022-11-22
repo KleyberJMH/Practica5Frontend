@@ -8,6 +8,8 @@ function getTransferencias(){
         .then(response => response.json())
         .then(transferencias => {
             const content = document.getElementById("content");
+            const titulo = document.getElementById("titulo");
+            titulo.innerHTML = "Transferencias de "+ cliente.usuario;
             if(transferencias.length != 0){
                 content.innerHTML = "<table id ='transferencias'><tr><th>Tipo</th><th>Concepto</th><th>Ordenante</th><th>Beneficiario</th><th>Importe</th><th>Fecha</th></tr></table>"
                 
