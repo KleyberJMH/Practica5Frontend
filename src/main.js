@@ -55,8 +55,11 @@ const router = async () => {
         if(usuarioGuardado == null){
             navegarA("/login")
             return;
+        } else{
+
         }
     }
+    
 
     if (rutaActual.ruta.path == "/login"){
         const usuarioGuardado = sessionStorage.getItem("user")
@@ -73,12 +76,27 @@ const router = async () => {
     // usamos await porque getHTML es una función asíncrona (async)
     await vistaActual.getHTML()
 
+const li = document.getElementById("noLogin");
+const nav = document.getElementsByClassName("needLogin");
+
+const usuarioLogeado = sessionStorage.getItem("user")
+if(usuarioLogeado != null ){
+    li.style.display='none';
+}else{
+    li.style.display='';
+    for (let x = 0; x < nav.length; x++) {
+        nav[x].style.display='none';
+    }
+}
+
+
 }
 
 // para navegar a una url
 const navegarA = (url) => {
     // indica al navegador que se navega a url para poder volver atrás, recargar página...etc
     history.pushState(null, null, url)
+
     // procesa la ruta a la que navegar
     router()
 }
@@ -98,3 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // procesamos la ruta al cargar la aplicación
     router()
 })
+
+
+
+ 

@@ -20,11 +20,17 @@ function getMensajes(){
             
             console.log({mensajes})
             if(mensajes.length != 0){
-                content.innerHTML = "<table id ='mensajes'><tr><th>Destino</th><th>Fecha</th><th>Mensaje</th></tr></table>"
-                
+                content.innerHTML = "<table><thead><tr><th>Tipo</th><th>Origen</th><th>Destino</th><th>Fecha</th><th>Mensaje</th></tr></thead><tbody id='tbody'></tbody></table>"
+                const tabla = document.getElementById("tbody");
+                let tipo = ""
+
                 for (const mensaje of mensajes) {   
-                    const tabla = document.getElementById("mensajes");
-                        tabla.innerHTML += `<tr><td>${mensaje.destino.id}</td><td>${mensaje.fecha}</td><td>${mensaje.texto}</td></tr>`;       
+                if (mensaje.origen.id == idGestor) {
+                    tipo = "Enviado"
+                }else if (mensaje.destino.id == idGestor){
+                    tipo = "Recibido"
+                }    
+                        tabla.innerHTML += `<tr><td>${tipo}</td><td>${mensaje.origen.usuario}</td><td>${mensaje.destino.usuario}</td><td>${mensaje.fecha}</td><td>${mensaje.texto}</td></tr>`;       
                     }
             }else {
                 content.innerHTML = "<p>No tienes mensajes enviados</p>";

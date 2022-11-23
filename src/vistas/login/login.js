@@ -16,7 +16,7 @@ function escucharClickBoton() {
                 sessionStorage.setItem('user', JSON.stringify(gestor));
                  location.reload();
             }else{
-                // alert("El correo o contraseña no coinciden")
+                document.getElementById("alerta").style.display='';
             }
         
     })

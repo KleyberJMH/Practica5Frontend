@@ -6,6 +6,7 @@
     <!-- para que sea acaptable a mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Banco</title>
 </head>
 
@@ -14,14 +15,12 @@
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">App Gestor</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a data-app-link href="/">Inicio</a></li>
-            <li><a data-app-link href="/mi-perfil">Mi perfil</a></li>
-            <li><a data-app-link href="/nuevo-gestor">Nuevo gestor</a></li>
-            <li><a data-app-link href="/nuevo-cliente">Nuevo cliente</a></li>
-            <li><a data-app-link href="/nuevo-mensaje">Nuevo mensaje</a></li>
-            <li><a data-app-link href="/mostrar-clientes">Mis clientes</a></li>
-            <li><a data-app-link href="/mostrar-mensajes">Mis mensajes</a></li>
-            <li><a data-app-link href="/login">Login</a></li>
+            <li class="needLogin"><a data-app-link href="/">Inicio</a></li>
+            <li class="needLogin"><a data-app-link href="/mi-perfil">Mi perfil</a></li>
+            <li class="needLogin"><a data-app-link href="/nuevo-gestor">Nuevo gestor</a></li>
+            <li class="needLogin"><a data-app-link href="/mostrar-clientes">Mis clientes</a></li>
+            <li class="needLogin"><a data-app-link href="/mostrar-mensajes">Mis mensajes</a></li>
+            <li id="noLogin"><a data-app-link href="/login">Login</a></li>
           </ul>
         </div>
       </nav>

@@ -23,13 +23,9 @@ function escucharClickBoton() {
         // gestor que guardaremos
         // con .value obtenemos el valor de un input
         const nuevoMensaje = {
-            origen: {
-                id: idGestor
-            },
-            destino: {
-                id: destinoInput.value
-            },
+            destino: {id: destinoInput.value  },
             texto: mensajeInput.value,
+            origen: {id: idGestor }
         }
 
         // para pasarlo como parámetro al fetch

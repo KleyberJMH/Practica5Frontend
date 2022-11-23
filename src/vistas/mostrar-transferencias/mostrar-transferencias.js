@@ -11,22 +11,27 @@ function getTransferencias(){
             const titulo = document.getElementById("titulo");
             titulo.innerHTML = "Transferencias de "+ cliente.usuario;
             if(transferencias.length != 0){
-                content.innerHTML = "<table id ='transferencias'><tr><th>Tipo</th><th>Concepto</th><th>Ordenante</th><th>Beneficiario</th><th>Importe</th><th>Fecha</th></tr></table>"
-                
+                content.innerHTML = "<table class='highlight' id ='transferencias'><thead><tr><th>Tipo</th><th>Concepto</th><th>Ordenante</th><th>Beneficiario</th><th>Importe</th><th>Fecha</th></tr><thead><tbody id='tbody'></tbody></table>"
+                const tabla = document.getElementById("tbody");
+
                 for (const transferencia of transferencias) {   
-                    const tabla = document.getElementById("transferencias");
+                    let tipo = ""
+                    let clase = ""
                     if(transferencia.ordenante.id != cliente.id){
-                        tabla.innerHTML += `<tr><td>Credito</td><td>${transferencia.concepto}</td><td>${transferencia.ordenante.usuario}</td><td>${transferencia.beneficiario.usuario}</td><td>${transferencia.importe}</td><td>${transferencia.fecha}</td></tr>`;
+                        tipo = "Recibido"
+                        clase = "green lighten-5"
                     }else{
-                        tabla.innerHTML += `<tr><td>Debito</td><td>${transferencia.concepto}</td><td>${transferencia.ordenante.usuario}</td><td>${transferencia.beneficiario.usuario}</td><td>${transferencia.importe}</td><td>${transferencia.fecha}</td></tr>`;
+                        tipo = "Enviado"
+                        clase = "red lighten-4"
                     }
+                    tabla.innerHTML += `<tr class="${clase}"><td>${tipo}</td><td>${transferencia.concepto}</td><td>${transferencia.ordenante.usuario}</td><td>${transferencia.beneficiario.usuario}</td><td>${transferencia.importe}</td><td>${transferencia.fecha}</td></tr>`;
                                
                     }
                     
             }else {
                 content.innerHTML = "<p>No tienes transferencias realizadas</p>";
             }
-            content.innerHTML += `<button id="atras">Atras</button>`;         
+            content.innerHTML += `<button class="waves-effect waves-light btn" id="atras">Atras</button>`;         
 escucharClickBoton();
         })
         

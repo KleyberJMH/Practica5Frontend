@@ -35,7 +35,6 @@ const botonLogout = document.getElementById("btn-logout");
 
 botonLogout.addEventListener("click", (_event) => {
     sessionStorage.clear()
-    alert("Se ha cerrado sesion")
     location.reload();
 })
 }
